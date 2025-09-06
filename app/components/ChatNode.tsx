@@ -3,6 +3,11 @@
 import { useChat } from '@ai-sdk/react'
 import { Handle, Position } from '@xyflow/react';
 import { useState } from 'react'
+import { Loader } from 'lucide-react';
+
+const LoadingSpinner = () => {
+    return <Loader className="animate-spin text-blue-500 w-5 h-5 mx-auto my-2" />;
+};
 
 function ChatNode({ isConnectable }: { isConnectable?: boolean }) {
     const { messages, status, sendMessage } = useChat();
@@ -34,9 +39,7 @@ function ChatNode({ isConnectable }: { isConnectable?: boolean }) {
                         </div>
                     ))}
                     {status === 'streaming' && (
-                        <div className="p-[6px] px-[10px] rounded-xl max-w-[80%] self-start">
-                            <div>Thinking...</div>
-                        </div>
+                        <LoadingSpinner />
                     )}
                 </div>
 
