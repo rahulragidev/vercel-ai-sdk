@@ -1,9 +1,16 @@
-import React from 'react'
+'use client';
 
-const page = () => {
+import dynamic from 'next/dynamic'
+
+// Use dynamic import for React Flow
+const FlowDiagram = dynamic(
+  () => import('./components/FlowDiagram')
+)
+
+export default function Page() {
   return (
-    <div>page</div>
+    <div className='h-screen'>
+      <FlowDiagram />
+    </div>
   )
 }
-
-export default page
