@@ -9,7 +9,7 @@ function ChatNode({ isConnectable }: { isConnectable?: boolean }) {
     const [input, setInput] = useState('');
 
     return (
-        <div className="w-[250px] h-full">
+        <div className="max-[250px] rounded-lg overflow-hidden bg-black">
             <Handle
                 type="target"
                 position={Position.Top}
