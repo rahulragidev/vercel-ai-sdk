@@ -39,6 +39,56 @@
   overflow: hidden;
 }
 
+/* Chat Node Styles - Simplified */
+.chat-node {
+  width: 250px;
+  height: 100%;
+}
+
+.chat-content {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.message {
+  padding: 6px 10px;
+  border-radius: 12px;
+  max-width: 80%;
+}
+
+.user-message {
+  align-self: flex-end;
+}
+
+.ai-message {
+  align-self: flex-start;
+}
+
+.chat-input-form {
+  display: flex;
+  border-top: 1px solid;
+  padding: 6px;
+}
+
+.chat-input {
+  flex: 1;
+  border: none;
+  padding: 6px;
+}
+
+.chat-submit {
+  margin-left: 6px;
+  border: none;
+  cursor: pointer;
+}
+
 @media (prefers-color-scheme: dark) {
   .react-flow__node {
     background-color: #222;
