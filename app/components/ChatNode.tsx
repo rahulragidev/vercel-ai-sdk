@@ -9,21 +9,24 @@ function ChatNode({ isConnectable }: { isConnectable?: boolean }) {
     const [input, setInput] = useState('');
 
     return (
-        <div className="chat-node">
+        <div className="w-[250px] h-full">
             <Handle
                 type="target"
                 position={Position.Top}
                 isConnectable={isConnectable}
             />
 
-            <div className="chat-content">
-                <div className="chat-messages">
+            <div className="flex flex-col h-fit">
+                <div className="flex-1 overflow-y-auto p-2">
                     {messages.map((message) => (
                         <div
                             key={message.id}
-                            className={`message ${message.role === 'user' ? 'user-message' : 'ai-message'}`}
+                            className={`p-[6px] px-[10px] rounded-xl max-w-[80%] ${message.role === 'user'
+                                ? 'self-end'
+                                : 'self-start'
+                                }`}
                         >
-                            <div className="message-content">
+                            <div>
                                 {message.parts.map((part, index) =>
                                     part.type === 'text' ? <span key={`${message.id}-part-${index}`}>{part.text}</span> : null
                                 )}
@@ -31,8 +34,8 @@ function ChatNode({ isConnectable }: { isConnectable?: boolean }) {
                         </div>
                     ))}
                     {status === 'streaming' && (
-                        <div className="message ai-message">
-                            <div className="message-content">Thinking...</div>
+                        <div className="p-[6px] px-[10px] rounded-xl max-w-[80%] self-start">
+                            <div>Thinking...</div>
                         </div>
                     )}
                 </div>
@@ -45,18 +48,18 @@ function ChatNode({ isConnectable }: { isConnectable?: boolean }) {
                             setInput('');
                         }
                     }}
-                    className="chat-input-form"
+                    className="flex border-t border-solid p-[6px]"
                 >
                     <input
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder="Type a message..."
-                        className="chat-input"
+                        className="flex-1 border-none p-[6px]"
                         disabled={status !== 'ready'}
                     />
                     <button
                         type="submit"
-                        className="chat-submit"
+                        className="ml-[6px] border-none cursor-pointer"
                         disabled={status !== 'ready'}
                     >
                         {status === 'streaming' ? '...' : 'Send'}
